@@ -31,10 +31,43 @@
     <section class="content">
         <div class="content-inside card">
             <h2 class="slogan">...Where you find Books, and Books find you!</h2>
-            <div class="search-area">
-                <input type="text" name="search-box" id="search-input" placeholder="Search for a book title!">
-                <i class="fa-solid fa-magnifying-glass" id="search-button" onclick="query_process()"></i>
-            </div>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Expand to Search</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <div class="search-area">
+                        <input type="text" name="search-box" id="search-input" onkeyup="filterFunction()" placeholder="Search for a book title!">
+                        <i class="fa-solid fa-magnifying-glass" id="search-button" onclick="query_process()"></i>
+                    </div>
+                  <a href="#about">Harry Potter</a>
+                  <a href="#base">2 States</a>
+                  <a href="#blog">The Great Gatsby</a>
+                  <a href="#contact">Invisible Man</a>
+                </div>
+              </div>
+              
+              <script>
+              /* When the user clicks on the button,
+              toggle between hiding and showing the dropdown content */
+              function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+              }
+              
+              function filterFunction() {
+                var input, filter, ul, li, a, i;
+                input = document.getElementById("search-input");
+                filter = input.value.toUpperCase();
+                div = document.getElementById("myDropdown");
+                a = div.getElementsByTagName("a");
+                for (i = 0; i < a.length; i++) {
+                  txtValue = a[i].textContent || a[i].innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                  } else {
+                    a[i].style.display = "none";
+                  }
+                }
+              }
+              </script>
         </div>
         <img src="images/Reading-Book.png" alt="" class="reading-book">
     </section>

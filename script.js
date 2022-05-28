@@ -14,14 +14,6 @@ var images = [
     'http://images.amazon.com/images/P/0898153859.01.LZZZZZZZ.jpg',
 ]
 
-var file = "data/booksdata.csv"
-var result
-
-Papa.parse(file, {
-    download: true, header: true, complete: function(results, file) {
-        console.log("Parsing complete: ", results, file);
-    }
-})
 
 function generate_recommendations() {
     var k = 0
@@ -58,8 +50,20 @@ function scrollFunction() {
 
 function query_process() {
     var query = document.getElementById("search-input").value
-    var results = document.getElementById("recommended-and-results")
-    results.innerHTML = "Displaying Results for '" + query + "'"
+
+    var file = "data/booksdata.csv"
+
+    Papa.parse(file, {
+        download: true, header: true, complete: function(results, file) {
+            console.log("Parsing complete: ", results, file);
+            for (let x in results.data) {
+                console.log(results.data[x])
+            }
+        }
+    })
+
+    var output = document.getElementById("recommended-and-results")
+    output.innerHTML = "Displaying Results for '" + query + "'"
 
     var books = {
         "123456789": {
